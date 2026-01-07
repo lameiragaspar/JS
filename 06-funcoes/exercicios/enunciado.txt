@@ -1,0 +1,107 @@
+🧪 Exercício 1 — “Calculadora funcional”
+🎯 Objetivo
+
+Treinar:
+funções puras
+parâmetros
+return
+composição simples
+
+🧩 Enunciado
+
+Implemente as funções:
+
+function somar(a, b) {}
+function subtrair(a, b) {}
+function multiplicar(a, b) {}
+function dividir(a, b) {}
+
+
+Depois implemente:
+
+function calcular(a, b, operacao) {
+  // operacao será uma função: somar, subtrair, etc.
+}
+
+
+calcular deve simplesmente executar:
+
+return operacao(a, b);
+
+🧪 Testes
+console.log(calcular(10, 5, somar));        // 15
+console.log(calcular(10, 5, subtrair));     // 5
+console.log(calcular(10, 5, multiplicar));  // 50
+console.log(calcular(10, 5, dividir));      // 2
+
+📌 Regras
+
+Todas devem ser funções puras
+Não usar if nem switch
+calcular deve usar a função recebida
+______________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________
+
+🧪 Exercício 2 — “Função fábrica” (factory function)
+
+Agora vamos treinar:
+funções que retornam outras funções
+closures (sem entrar pesado em teoria)
+encapsulamento de comportamento
+
+🧩 Enunciado
+
+Implemente:
+
+function criarMultiplicador(fator) {
+  // retorna uma função
+}
+
+
+A função retornada deve multiplicar o número recebido pelo fator.
+
+Exemplo esperado
+const dobrar = criarMultiplicador(2);
+const triplicar = criarMultiplicador(3);
+
+console.log(dobrar(10));     // 20
+console.log(triplicar(10));  // 30
+
+📌 Regras
+Não usar variáveis globais
+Não usar if
+Usar retorno de função
+
+______________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________
+
+🧪 Exercício 3 — “Contador com estado privado”
+
+Agora você vai usar closure para guardar estado.
+
+🧩 Enunciado
+
+Implemente:
+
+function criarContador() {
+  // retorna uma função
+}
+
+
+A função retornada deve:
+começar em 0
+a cada chamada, incrementar o contador em 1
+retornar o valor atual
+
+Exemplo
+const contador = criarContador();
+
+console.log(contador()); // 1
+console.log(contador()); // 2
+console.log(contador()); // 3
+
+📌 Regras
+Não usar variáveis globais
+Não usar class
+Não usar this
+Usar closure

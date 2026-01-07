@@ -1,0 +1,144 @@
+Sistema de Permissões
+
+(Operadores & Lógica na prática real)
+
+> Esse tipo de lógica aparece em:
+
+1 dashboards
+2 painéis admin
+3 rotas protegidas
+4 React (renderização condicional)
+5 Node (middleware)
+
+🎯 Objetivo do projeto
+
+Usar `&&`, `||`, `??`, `?.`
+Controlar acesso sem `if` desnecessário
+Retornar valores reais, não apenas booleanos
+Escrever código limpo e expressivo
+
+---
+
+📌 Estado base (Exemplo)
+const usuarioBase = {
+  nome: "Pedro",
+  role: "admin", // "admin" | "editor" | "user"
+  ativo: true,
+  permissoes: {
+    podeCriar: true,
+    podeEditar: false
+  }
+};
+---
+
+🛠️ Funções obrigatórias
+
+1️⃣ `podeAcessarPainel(usuario)`
+
+* Retorna `"Acesso permitido"` ou `"Acesso negado"`
+* Regras:
+  * usuário deve existir
+  * deve estar ativo
+  * role "admin" OU "editor"
+
+💡 Sem `if` tradicional
+
+2️⃣ `podeCriarConteudo(usuario)`
+
+* Retorna `true` ou `false`
+* Usa `?.` para evitar crash
+* Usuário precisa:
+  * existir
+  * estar ativo
+  * `permissoes.podeCriar === true`
+
+3️⃣ `mensagemBoasVindas(usuario)`
+
+* Retorna:
+  * "Bem-vindo, <nome>" se nome existir
+  * "Bem-vindo, visitante" caso contrário
+* Deve usar `??`
+
+---
+
+4️⃣ `nivelDeAcesso(usuario)`
+
+* Retorna:
+  * `"Admin"`
+  * `"Editor"`
+  * `"Usuário comum"`
+  * `"Desconhecido"`
+* Usar operadores (||, &&)
+* Sem `if` ou `switch`
+
+🧪 Testes mínimos (obrigatórios)
+
+console.log(podeAcessarPainel(usuarioBase));
+console.log(podeCriarConteudo(usuarioBase));
+console.log(mensagemBoasVindas(usuarioBase));
+console.log(nivelDeAcesso(usuarioBase));
+
+_______________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________
+
+🧩 MINI-PROJETO 2 — Sistema de Visibilidade de Funcionalidades
+
+Contexto
+
+Você tem um sistema que mostra ou esconde funcionalidades com base no usuário.
+
+🧱 Estrutura base (não altere)
+const usuario = {
+  nome: "Pedro",
+  role: "editor", // "admin" | "editor" | "user" | ""
+  ativo: true,
+  plano: "free", // "free" | "pro"
+  permissoes: {
+    podeCriar: true,
+    podeExcluir: false
+  }
+};
+
+🧠 Regras (leia com atenção)
+1️⃣ mostrarBotaoCriar(usuario)
+
+usuário precisa estar ativo
+
+e ter permissão podeCriar
+
+retorna "Botão Criar Visível" ou "Oculto"
+
+2️⃣ mostrarBotaoExcluir(usuario)
+
+somente admin
+
+OU editor com podeExcluir
+
+usuário precisa estar ativo
+
+retorna "Pode Excluir" ou "Sem Permissão"
+
+3️⃣ mostrarAreaPremium(usuario)
+
+plano "pro" OU role "admin"
+
+se não existir plano → considerar "free"
+
+retorna "Área Premium" ou "Área Comum"
+
+4️⃣ statusUsuario(usuario)
+
+se não existir usuário → "Visitante"
+
+se existir mas não ativo → "Usuário Inativo"
+
+se ativo → "Usuário Ativo"
+
+❗ Não usar if
+✔️ Apenas operadores e expressões
+
+🧪 Exemplo de uso esperado
+console.log(mostrarBotaoCriar(usuario));
+console.log(mostrarBotaoExcluir(usuario));
+console.log(mostrarAreaPremium(usuario));
+console.log(statusUsuario(usuario));
