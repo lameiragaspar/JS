@@ -7,7 +7,7 @@ function clonarComDescriptors(obj){
 const original = {};
 
 Object.defineProperty(original, "id", {
-  value: 1,
+  value: 1, //Funciona para o exercício, mas se a ideia é manter o id original, o ideal é value: original.id
   writable: false,
   enumerable: false
 });
