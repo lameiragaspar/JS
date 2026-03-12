@@ -1,0 +1,30 @@
+é um lookahead negativo (negative lookahead).
+Vamos quebrar para entender:
+
+1. (?! ... )
+É um lookahead negativo: verifica se o que vem a seguir não corresponde ao padrão dentro dos parênteses.
+Importante: ele não consome caracteres da string, apenas faz a verificação.
+2. .*
+Significa: "qualquer caractere (.) repetido zero ou mais vezes (*)".
+É ganancioso (greedy), ou seja, tenta casar o máximo possível.
+3. \.\.
+O \. significa "ponto literal" (o ponto normal em regex significa "qualquer caractere", mas com \ ele perde esse significado especial).
+\.\. significa dois pontos consecutivos (..).
+4. Juntando tudo
+(?!.*\.\.) significa:
+"A partir desta posição, não pode existir em nenhum lugar da string dois pontos (..) consecutivos."
+
+5. Exemplo em JavaScript
+Javascript
+
+Copiar código
+const regex = /^(?!.*\.\.).+$/;
+
+console.log(regex.test("abc.def"));   // true  ✅ (não tem dois pontos seguidos)
+console.log(regex.test("abc..def"));  // false ❌ (tem dois pontos seguidos)
+console.log(regex.test("..abc"));     // false ❌ (começa com dois pontos)
+✅ Uso comum:
+Esse tipo de lookahead é muito usado para validar formatos (por exemplo, nomes de arquivos, domínios, endereços de e-mail) onde não é permitido ter dois pontos seguidos.
+
+Se quiser, posso te mostrar uma versão completa de regex que valida um domínio ou e-mail usando esse (?!.*\.\.) como parte da regra.
+Quer que eu monte esse exemplo?
